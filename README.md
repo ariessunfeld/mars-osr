@@ -1,5 +1,7 @@
 # Mars OSR
 
+[![DOI](https://zenodo.org/badge/1350224149.svg)](https://doi.org/10.5281/zenodo.22168117)
+
 Mars OSR is research software for simulating and designing orbits and
 trajectories for orbiting solar reflectors at Mars.
 
