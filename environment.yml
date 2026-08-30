@@ -1,0 +1,17 @@
+name: mars-osr
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - numpy
+  - scipy
+  - matplotlib
+  - spiceypy
+  - cyipopt
+  - pytest
+  - requests
+  - cloudpickle
+  - build
+  - pip
+  - pip:
+    - numba==0.66.0

@@ -1,0 +1,18 @@
+.DS_Store
+.coverage
+.pytest_cache/
+.venv/
+__pycache__/
+*.egg-info/
+*.py[cod]
+build/
+dist/
+
+# Downloaded scientific data and generated products
+data
+simulation_outputs
+
+# Solver and editor by-products
+ipopt.out
+*.log
+*.swp

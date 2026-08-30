@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Please cite Mars OSR using the metadata in this file."
+title: "Mars OSR: Orbital Solar Reflector Simulation and Trajectory Design"
+type: software
+abstract: "Mars OSR is research software for simulating and designing orbits and trajectories for orbiting solar reflectors at Mars."
+authors:
+  - family-names: Essunfeld
+    given-names: Ari
+    orcid: "https://orcid.org/0000-0001-8689-0734"
+repository-code: "https://github.com/ariessunfeld/mars-osr"
+license: MIT
+version: 0.1.0
+date-released: 2026-08-29
+keywords:
+  - Mars
+  - solar sail
+  - orbital reflector
+  - astrodynamics
