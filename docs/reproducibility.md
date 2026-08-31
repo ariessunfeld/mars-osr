@@ -7,7 +7,8 @@ reproducibility.
 
 - The Python library, maintained command-line scripts, and tests are versioned.
 - External NAIF kernels and the MRO120F field have explicit download locations
-  and checksums in the source.
+  in the source. Kernel hashes are recorded after download, and the MRO120F
+  parser validates the model's defining header values.
 - `MARS_OSR_DATA_DIR` selects a shared, external scientific-data root for
   installed or containerized deployments.
 - Command-line scripts record their configuration in generated summaries or
@@ -26,7 +27,9 @@ Generated simulation products are not committed to the source repository. The
 curated inputs for Figures 2–8 and S1–S4 can be installed from the separate
 `mars-osr-manuscript-figure-data-v1.tar.gz` release asset with
 `scripts/fetch_manuscript_figure_data.py`. Its archive checksum and every
-extracted file hash are versioned with the figure registry.
+extracted file hash are versioned with the figure registry. This archive also
+supplies the Mars texture used by Figures 2, 4, 5, and 6. Extraction writes
+only into the Git-ignored `data/` and `simulation_outputs/` directories.
 
 Figure reproduction targets scientific content and layout rather than binary
 identity. Font rendering, raster metadata, and the replacement of manual crops

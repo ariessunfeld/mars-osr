@@ -1,9 +1,8 @@
-"""Render coordinated multishell total- and marginal-fluence figures.
+"""Render the manuscript multishell marginal-fluence figure.
 
-Figure 1 overlays every shell/LTAN series for N=1..120.  A fixed continuous
-viridis scale maps LTAN from 16 to 20 h, while line style maps orbital shell.
-Figure 2 uses the identical encodings in four shell panels and shows the
-ring-to-ring increment F_N-F_(N-1) through N=12.
+The figure uses a fixed continuous viridis scale to map LTAN from 16 to 20 h,
+while line style maps orbital shell. It shows the ring-to-ring increment
+F_N-F_(N-1) through N=12.
 
 Without ``--require-complete``, the script discovers available per-LTAN CSVs
 and writes conspicuously labelled PARTIAL diagnostics under
@@ -52,12 +51,10 @@ MARGINAL_LEGEND_BORDERAXESPAD = 0.2
 
 DATA_DIR = Path("simulation_outputs")
 FINAL_DIR = Path("figures/manuscript/generated")
-PARTIAL_TOTAL = DATA_DIR / "20260811_multishell_ring_fluence_vs_N_LTAN_PARTIAL.png"
 PARTIAL_MARGINAL = (
     DATA_DIR
     / "20260811_multishell_ring_fluence_marginal_N1_12_LTAN_PARTIAL.png"
 )
-FINAL_TOTAL = FINAL_DIR / "figH5_multishell_ring_fluence_vs_N_LTAN.png"
 FINAL_MARGINAL = FINAL_DIR / "figure_s4_ring_fluence.png"
 
 
@@ -182,7 +179,7 @@ def render(
     n_max: int,
     marginal_n_max: int,
     require_complete: bool,
-) -> tuple[Path, Path]:
+) -> Path:
     shell_producer = _load_shell_producer()
     base, _, _ = shell_producer._load_base_producer()
     configs = _configs(shell_producer, base)
@@ -214,71 +211,9 @@ def render(
     cmap = plt.cm.viridis
     norm = Normalize(vmin=LTAN_COLOR_MIN_H, vmax=LTAN_COLOR_MAX_H)
     scalar_map = ScalarMappable(norm=norm, cmap=cmap)
-    total_path = FINAL_TOTAL if require_complete else PARTIAL_TOTAL
     marginal_path = FINAL_MARGINAL if require_complete else PARTIAL_MARGINAL
-    total_path.parent.mkdir(parents=True, exist_ok=True)
     marginal_path.parent.mkdir(parents=True, exist_ok=True)
     prefix = _context(require_complete, available, requested)
-
-    fig, ax = plt.subplots(figsize=(13.0, 7.8), layout="constrained")
-    for config in configs:
-        for ltan_h, rows in data[config.k].items():
-            n = np.array([int(row["N"]) for row in rows])
-            total = np.array(
-                [row["total_fluence_J_per_m2_per_sol"] for row in rows]
-            )
-            ax.plot(
-                n,
-                total / 1000.0,
-                color=cmap(norm(ltan_h)),
-                linestyle=config.linestyle,
-                lw=2.2,
-                alpha=0.9,
-            )
-    ax.set_xlim(1, n_max)
-    ax.set_ylim(bottom=0.0)
-    ax.set_xlabel("Number of sails in ring, N", fontsize=18)
-    ax.set_ylabel(
-        r"Delivered fluence over one sol (kJ m$^{-2}$)",
-        fontsize=18,
-    )
-    ax.tick_params(labelsize=14)
-    ax.grid(alpha=0.22)
-    shell_handles = [
-        Line2D(
-            [0],
-            [0],
-            color="0.2",
-            lw=2.5,
-            linestyle=config.linestyle,
-            label=(
-                f"K={config.k} "
-                f"({config.a_km - base.R_MARS_KM:.0f} km)"
-            ),
-        )
-        for config in configs
-    ]
-    ax.legend(
-        handles=shell_handles,
-        title="Orbital shell (altitude)",
-        loc="lower right",
-        fontsize=12,
-        title_fontsize=12,
-        frameon=False,
-        ncol=2,
-    )
-    colorbar = fig.colorbar(scalar_map, ax=ax, pad=0.015)
-    colorbar.set_label("Local time of ascending node (h)", fontsize=14)
-    colorbar.ax.tick_params(labelsize=11)
-    fig.suptitle(
-        f"{prefix}fluence from evenly spaced rings across four Mars "
-        "orbital shells\n"
-        r"Mars perihelion; 10,000 m$^2$ sails; $M_{0,j}=360^\circ j/N$; "
-        r"40$^\circ$N, 200$^\circ$E target; no atmospheric losses",
-        fontsize=17,
-    )
-    fig.savefig(total_path, dpi=200)
-    plt.close(fig)
 
     fig, ax = plt.subplots(figsize=MARGINAL_FIGSIZE, layout="constrained")
     for config in configs:
@@ -401,9 +336,8 @@ def render(
             f"DeltaF N2-{marginal_n_max}="
             f"{marginal_values.min():.6f}..{marginal_values.max():.6f}"
         )
-    print(f"wrote {total_path}")
     print(f"wrote {marginal_path}")
-    return total_path, marginal_path
+    return marginal_path
 
 
 def main() -> int:

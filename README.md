@@ -66,11 +66,12 @@ versioned. The complete kernel set is about 1.2 GB:
 python scripts/fetch_kernels.py
 ```
 
-The gravity field is fetched on first use. Both data directories are ignored by
-Git. Checksums and download locations are defined in the source code. A source
-checkout stores downloads under `data/`; an installed wheel uses
-`~/.cache/mars-osr/`. Set `MARS_OSR_DATA_DIR` to choose a different common data
-root.
+The gravity field is fetched from its PDS archive on first use and validated
+against the expected MRO120F header values. Kernel download locations are
+defined in the source, and their SHA-256 values are recorded locally after
+download. The entire `data/` directory is ignored by Git. A source checkout
+stores downloads under `data/`; an installed wheel uses `~/.cache/mars-osr/`.
+Set `MARS_OSR_DATA_DIR` to choose a different common data root.
 
 ## Tests
 

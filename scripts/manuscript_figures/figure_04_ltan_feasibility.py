@@ -267,8 +267,6 @@ def main() -> None:
         OUT_PNG,
         dpi=SAVE_DPI,
         facecolor="white",
-        bbox_inches="tight",
-        pad_inches=0.02,
     )
     plt.close(fig)
     print(f"wrote {OUT_PNG}  ({FIG_W_IN}x{FIG_H_IN} in @ {SAVE_DPI} dpi)")

@@ -101,6 +101,22 @@ def test_figure_7_retains_manuscript_area(manifest):
     assert "10000" not in source
 
 
+def test_s4_producer_emits_only_the_manuscript_figure():
+    source = (
+        REPOSITORY_ROOT
+        / "scripts/manuscript_figures/figure_s4_ring_fluence.py"
+    ).read_text(encoding="utf-8")
+    assert "figH5_multishell_ring_fluence_vs_N_LTAN" not in source
+
+
+def test_figure_4_preserves_full_canvas_for_sunlight_arrows():
+    source = (
+        REPOSITORY_ROOT
+        / "scripts/manuscript_figures/figure_04_ltan_feasibility.py"
+    ).read_text(encoding="utf-8")
+    assert 'bbox_inches="tight"' not in source
+
+
 def test_id_normalization(registry):
     assert registry.normalize_figure_id("2") == "02"
     assert registry.normalize_figure_id("02") == "02"

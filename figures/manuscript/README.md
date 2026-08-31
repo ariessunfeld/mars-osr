@@ -29,6 +29,11 @@ python scripts/fetch_manuscript_figure_data.py \
   --archive /path/to/mars-osr-manuscript-figure-data-v1.tar.gz
 ```
 
+The archive installs the figure inputs and Mars texture under the Git-ignored
+`simulation_outputs/` and `data/` directories. It does not add them to Git.
+MRO120F is downloaded automatically on first use; the NAIF kernels are handled
+separately by `scripts/fetch_kernels.py`.
+
 Then list or reproduce figures from the repository root:
 
 ```bash
@@ -63,7 +68,7 @@ records the SHA-256 and size of every file in the separate data archive, and
 | S1 | Escape and capture duration | Available |
 | S2 | One-sol attitude angles | Available |
 | S3 | Slew demand and fluence | Available from the archived sweep |
-| S4 | Marginal ring fluence | Available from the archived per-LTAN series |
+| S4 | Marginal ring fluence | Available from the archived per-LTAN series; the producer emits only the manuscript figure |
 
 Figures 9 and 10 are intentionally separate from the vacuum-only optical model
 in the Mars OSR core. Their reference images and strict NetCDF plotting and
