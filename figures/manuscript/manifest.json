@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "manuscript": {
+    "title": "Doubling Sunlight at a Human Mars Base Using Orbiting Solar Reflectors",
+    "source_snapshot": "Overleaf download inspected 2026-08-31",
+    "figure_count": 14
+  },
+  "notes": [
+    "Reference images are the files included by the manuscript TeX sources.",
+    "Generated images are written separately and are not required to match the references byte for byte because some manuscript images were manually cropped or assembled.",
+    "Figure 7 uses a 1,000 m^2 reflector, matching the manuscript.",
+    "Figures 9 and 10 include the plotting layer but await the canonical coauthor climate-model package and inputs."
+  ],
+  "figures": [
+    {
+      "id": "01",
+      "label": "Figure 1",
+      "description": "Concept of operations from Earth-orbit delivery through illumination of a Mars base.",
+      "status": "reference_only",
+      "reference": {
+        "path": "figures/manuscript/reference/figure_01_concept_of_operations.png",
+        "sha256": "2a253546c255e4e5ee4f8c78904610f8de0fe2bc73f12c2bba497e0d227accb2",
+        "width_px": 1420,
+        "height_px": 949
+      },
+      "output": null,
+      "commands": [],
+      "inputs": [],
+      "note": "Manually composed concept illustration; retained as the authoritative manuscript asset."
+    },
+    {
+      "id": "02",
+      "label": "Figure 2",
+      "description": "Sun-referenced cone and clock-angle frame for a reflector in low Mars orbit.",
+      "status": "reproducible",
+      "reference": {
+        "path": "figures/manuscript/reference/figure_02_reference_frames.png",
+        "sha256": "700e776c26a9b1e5d94c8d9c5dcb703d7b0c23433b4a88743a947689b2531774",
+        "width_px": 3501,
+        "height_px": 3629
+      },
+      "output": "figures/manuscript/generated/figure_02_reference_frames.png",
+      "commands": [
+        ["python", "scripts/manuscript_figures/figure_02_reference_frames.py"]
+      ],
+      "inputs": [
+        "data/manuscript_figures/mars_texture.jpg",
+        "simulation_outputs/20260507_slice17_halfmarsyear_rvclos_pi_fluence_reward_60s_de_pjac_polish_de_chain_sol1_trajectory.csv"
+      ],
+      "note": "The producer emits the title-free composite represented in the manuscript."
+    },
+    {
+      "id": "03",
+      "label": "Figure 3",
+      "description": "Example Earth escape, interplanetary transfer, and Mars capture trajectory.",
+      "status": "reproducible",
+      "reference": {
+        "path": "figures/manuscript/reference/figure_03_mission_trajectory.png",
+        "sha256": "4396571b0256b3fcced3714311cd15735f93c83bbac050bc796988869d0303c9",
+        "width_px": 18000,
+        "height_px": 7000
+      },
+      "output": "figures/manuscript/generated/figure_03_mission_trajectory.png",
+      "commands": [
+        [
+          "python",
+          "scripts/manuscript_figures/figure_03_mission_trajectory.py",
+          "--earth-csv",
+          "simulation_outputs/midway_results/earth_escape/escape_20260618-144635_earth_sigma18_a800_dragaware_ltan18_mw_exitphase_e18_s18_per_step.csv",
+          "--tendril-json",
+          "simulation_outputs/midway_results/l0syn_out/l0syn_e18_K12_t28_s18_p-35.json",
+          "--capture-csv",
+          "simulation_outputs/midway_results/marscap_fix_out/escape_20260728-154925_sigma18_polar_blended_ssoLTAN18_ublend_mw_marscap_e28_s18_K12_per_step.csv",
+          "--no-cutouts"
+        ]
+      ],
+      "inputs": [
+        "simulation_outputs/midway_results/earth_escape/escape_20260618-144635_earth_sigma18_a800_dragaware_ltan18_mw_exitphase_e18_s18_per_step.csv",
+        "simulation_outputs/midway_results/l0syn_out/l0syn_e18_K12_t28_s18_p-35.json",
+        "simulation_outputs/midway_results/marscap_fix_out/escape_20260728-154925_sigma18_polar_blended_ssoLTAN18_ublend_mw_marscap_e28_s18_K12_per_step.csv"
+      ],
+      "note": "Uses the stored segment solutions and replays the full-physics interplanetary leg."
+    },
+    {
+      "id": "04",
+      "label": "Figure 4",
+      "description": "Continuously sunlit Sun-synchronous orbit families shown in LTAN-altitude coordinates.",
+      "status": "reproducible",
+      "reference": {
+        "path": "figures/manuscript/reference/figure_04_ltan_feasibility.png",
+        "sha256": "2f3cd3105162b48a3ae280d780b11f64288b184bc6f065cfe495672b947a02fb",
+        "width_px": 2735,
+        "height_px": 2798
+      },
+      "output": "figures/manuscript/generated/figure_04_ltan_feasibility.png",
+      "commands": [
+        ["python", "scripts/manuscript_figures/figure_04_ltan_feasibility.py"]
+      ],
+      "inputs": [
+        "data/manuscript_figures/mars_texture.jpg",
+        "simulation_outputs/20260612_eclipsefree_bands.csv"
+      ],
+      "note": "Rendered without the manually removed overall title."
+    },
+    {
+      "id": "05",
+      "label": "Figure 5",
+      "description": "Station-keeping attitude during a representative non-delivery orbit.",
+      "status": "reproducible",
+      "reference": {
+        "path": "figures/manuscript/reference/figure_05_stationkeeping_orbit.png",
+        "sha256": "c23d594262997796ed11760fa397e1c412a59bbd9a9d8f2afb330e9d51fda24b",
+        "width_px": 5100,
+        "height_px": 2274
+      },
+      "output": "figures/manuscript/generated/figure_05_stationkeeping_orbit.png",
+      "commands": [
+        ["python", "scripts/manuscript_figures/figures_05_06_orbit_and_delivery.py"]
+      ],
+      "inputs": [
+        "data/manuscript_figures/mars_texture.jpg",
+        "simulation_outputs/20260507_slice17_halfmarsyear_rvclos_pi_fluence_reward_60s_de_pjac_polish_de_chain_sol1_trajectory.csv"
+      ],
+      "note": "Shares one producer and input trajectory with Figure 6."
+    },
+    {
+      "id": "06",
+      "label": "Figure 6",
+      "description": "Attitude and slew phases around a representative illumination window.",
+      "status": "reproducible",
+      "reference": {
+        "path": "figures/manuscript/reference/figure_06_delivery_orbit.png",
+        "sha256": "18b17b315adaa388c1f01002de8b84302f5410c376c37a5ded3ef95f932cb5c8",
+        "width_px": 5100,
+        "height_px": 2433
+      },
+      "output": "figures/manuscript/generated/figure_06_delivery_orbit.png",
+      "commands": [
+        ["python", "scripts/manuscript_figures/figures_05_06_orbit_and_delivery.py"]
+      ],
+      "inputs": [
+        "data/manuscript_figures/mars_texture.jpg",
+        "simulation_outputs/20260507_slice17_halfmarsyear_rvclos_pi_fluence_reward_60s_de_pjac_polish_de_chain_sol1_trajectory.csv"
+      ],
+      "note": "Shares one producer and input trajectory with Figure 5."
+    },
+    {
+      "id": "07",
+      "label": "Figure 7",
+      "description": "Single-reflector fluence versus initial LTAN for four repeat-ground-track orbit families.",
+      "status": "reproducible",
+      "reference": {
+        "path": "figures/manuscript/reference/figure_07_ltan_fluence.png",
+        "sha256": "1a25c2606f487ff4e77e994d5e38c7b5af0aeaf737469e492e775267ec21418d",
+        "width_px": 2000,
+        "height_px": 1440
+      },
+      "output": "figures/manuscript/generated/figure_07_ltan_fluence.png",
+      "commands": [
+        ["python", "scripts/manuscript_figures/figure_07_ltan_fluence.py"]
+      ],
+      "inputs": [
+        "simulation_outputs/20260611_ltan_energy_K9.csv",
+        "simulation_outputs/20260611_ltan_energy_sweep_fine_12_24_pchip.csv"
+      ],
+      "note": "The figure and source data use a 1,000 m^2 reflector; no area rescaling is applied."
+    },
+    {
+      "id": "08",
+      "label": "Figure 8",
+      "description": "Irradiance from denser orbital rings and from multiple LTAN rings.",
+      "status": "reproducible",
+      "reference": {
+        "path": "figures/manuscript/reference/figure_08_constellation_scaling.png",
+        "sha256": "c8af50f0525963a6cca90f4b0150103c7596469bab3ef2a3f541641cc3fca06f",
+        "width_px": 2760,
+        "height_px": 746
+      },
+      "output": "figures/manuscript/generated/figure_08_constellation_scaling.png",
+      "commands": [
+        ["python", "scripts/manuscript_figures/figure_08_ring_densification.py"],
+        ["python", "scripts/manuscript_figures/figure_08_ltan_rings.py"],
+        ["python", "scripts/manuscript_figures/figure_08_constellation_scaling.py"]
+      ],
+      "inputs": [
+        "simulation_outputs/20260627_figH3_K12_10000m2_irr_cache.npz",
+        "simulation_outputs/20260818_figH3_K12_production_ltan_rings_exact_cache.npz",
+        "simulation_outputs/20260818_figH3_K12_production_ltan_rings_summary.csv",
+        "simulation_outputs/20260818_figH3_K12_production_ltan_rings_timeseries.csv",
+        "simulation_outputs/walker_constellation_continuous_5km/manifest.json",
+        "simulation_outputs/walker_constellation_continuous_5km/rings.csv",
+        "simulation_outputs/walker_constellation_continuous_5km/satellites.csv",
+        "simulation_outputs/walker_constellation_continuous_5km/shells.csv"
+      ],
+      "note": "The final script replaces the manuscript's manual side-by-side assembly and removes overall titles."
+    },
+    {
+      "id": "09",
+      "label": "Figure 9",
+      "description": "Natural and reflected top-of-atmosphere and surface insolation through a Mars year.",
+      "status": "plot_layer_pending_inputs",
+      "reference": {
+        "path": "figures/manuscript/reference/figure_09_insolation.png",
+        "sha256": "31c5064f5d088703476636a0a67274d3dfc47a3b1e726aec91a4f81371553ae7",
+        "width_px": 2250,
+        "height_px": 1890
+      },
+      "output": "figures/manuscript/generated/figure_09_insolation.png",
+      "commands": [
+        ["python", "scripts/manuscript_figures/figure_09_insolation.py"]
+      ],
+      "inputs": [
+        "simulation_outputs/manuscript_climate/run_no_sail_comimart_600Lz.nc",
+        "simulation_outputs/manuscript_climate/run_1p44_sail_comimart_600Lz.nc"
+      ],
+      "note": "The plotting and validation layer is included. The canonical climate and atmospheric-transmission model package is pending from the coauthor and is outside the vacuum-only Mars OSR core."
+    },
+    {
+      "id": "10",
+      "label": "Figure 10",
+      "description": "Modeled surface temperature with and without reflected insolation.",
+      "status": "plot_layer_pending_inputs",
+      "reference": {
+        "path": "figures/manuscript/reference/figure_10_surface_temperature.png",
+        "sha256": "1be672050372c487c4133758f07aa6ea5e093210bebcefcf9f85047369416616",
+        "width_px": 2250,
+        "height_px": 1890
+      },
+      "output": "figures/manuscript/generated/figure_10_surface_temperature.png",
+      "commands": [
+        ["python", "scripts/manuscript_figures/figure_10_temperature.py"]
+      ],
+      "inputs": [
+        "simulation_outputs/manuscript_climate/GCM_diurnal_T_zavg_40N.nc",
+        "simulation_outputs/manuscript_climate/run_no_sail_comimart_600Lz.nc",
+        "simulation_outputs/manuscript_climate/run_1p44_sail_comimart_600Lz.nc"
+      ],
+      "note": "The plotting and validation layer is included. The canonical one-dimensional climate-model package is pending from the coauthor and is outside the Mars OSR core."
+    },
+    {
+      "id": "S1",
+      "label": "Figure S1",
+      "description": "Earth-escape and Mars-capture duration versus reflector areal density.",
+      "status": "reproducible",
+      "reference": {
+        "path": "figures/manuscript/reference/figure_s1_transfer_duration.png",
+        "sha256": "2a3913b59c429687ec835ae7ddaf5b194c66581942438a7940271ae9ae57bddb",
+        "width_px": 2376,
+        "height_px": 1496
+      },
+      "output": "figures/manuscript/generated/figure_s1_transfer_duration.png",
+      "commands": [
+        ["python", "scripts/manuscript_figures/figure_s1_transfer_duration.py"]
+      ],
+      "inputs": [
+        "simulation_outputs/midway_results/earth_escape/*_summary.txt",
+        "simulation_outputs/midway_results/marscap_sigma6_equalLs_out/*_summary.txt",
+        "simulation_outputs/midway_results/marscap_k12_sigma_pilot_out/*_summary.txt"
+      ],
+      "note": "The input archive contains the successful and unsuccessful campaign summaries used by the aggregation logic."
+    },
+    {
+      "id": "S2",
+      "label": "Figure S2",
+      "description": "Cone and clock angles over one sol for the representative orbit.",
+      "status": "reproducible",
+      "reference": {
+        "path": "figures/manuscript/reference/figure_s2_attitude_angles.png",
+        "sha256": "32f38392ab748245baebe2779818e41b94b8df41a5a29fc5ceded716ca16d067",
+        "width_px": 3200,
+        "height_px": 1000
+      },
+      "output": "figures/manuscript/generated/figure_s2_attitude_angles.png",
+      "commands": [
+        ["python", "scripts/manuscript_figures/figure_s2_attitude_angles.py"]
+      ],
+      "inputs": [
+        "simulation_outputs/20260529_slice17_cas24_K_r_4_3year_sig18gm2_abl_baseline_de_chain_per_sol.csv",
+        "simulation_outputs/20260529_slice17_cas24_K_r_4_3year_sig18gm2_abl_baseline_de_chain_sol1_trajectory.csv"
+      ],
+      "note": "The input filenames are retained because they are the durable names embedded in the archived simulation products."
+    },
+    {
+      "id": "S3",
+      "label": "Figure S3",
+      "description": "Peak slew demand and delivered fluence versus LTAN and initial mean anomaly.",
+      "status": "reproducible",
+      "reference": {
+        "path": "figures/manuscript/reference/figure_s3_slew_demand.png",
+        "sha256": "52931118bf583a8ba2819619d9ec63faca3413df348b809a1ab871bc21d3d5da",
+        "width_px": 4320,
+        "height_px": 2916
+      },
+      "output": "figures/manuscript/generated/figure_s3_slew_demand.png",
+      "commands": [
+        [
+          "python",
+          "scripts/manuscript_figures/figure_s3_slew_demand.py",
+          "--input-csv",
+          "simulation_outputs/20260615-150016_slew_demand_vs_ltan_phasing.csv"
+        ]
+      ],
+      "inputs": [
+        "simulation_outputs/20260612_eclipsefree_bands.csv",
+        "simulation_outputs/20260615-150016_slew_demand_vs_ltan_phasing.csv"
+      ],
+      "note": "Uses the archived full sweep; no propagation is required for figure regeneration."
+    },
+    {
+      "id": "S4",
+      "label": "Figure S4",
+      "description": "Ring-to-ring fluence increment across four orbital families.",
+      "status": "reproducible",
+      "reference": {
+        "path": "figures/manuscript/reference/figure_s4_ring_fluence.png",
+        "sha256": "782ddf7ebd51a6b9d5ea2d1098aff82c9156664fbfc2dbe3afe4990024c79a17",
+        "width_px": 2600,
+        "height_px": 1560
+      },
+      "output": "figures/manuscript/generated/figure_s4_ring_fluence.png",
+      "commands": [
+        ["python", "scripts/manuscript_figures/figure_s4_ring_fluence.py", "--require-complete"]
+      ],
+      "inputs": [
+        "simulation_outputs/20260811_K9_ring_fluence_N1_120_LTAN*_Nmax120_vsN.csv",
+        "simulation_outputs/20260811_K10_ring_fluence_N1_120_LTAN*_Nmax120_vsN.csv",
+        "simulation_outputs/20260811_K11_ring_fluence_N1_120_LTAN*_Nmax120_vsN.csv",
+        "simulation_outputs/20260811_K12_ring_fluence_N1_120_LTAN*_Nmax120_vsN.csv"
+      ],
+      "note": "The generator scripts are included for recomputing the cached per-LTAN series; the manuscript figure uses the archived CSVs."
+    }
+  ]
+}

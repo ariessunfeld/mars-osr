@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "filename": "mars-osr-manuscript-figure-data-v1.tar.gz",
+  "sha256": "e7f6b273d20ddffc35b5ebb20f6c52a9957028c8c65bf2679b3e5c3760c0bc30",
+  "size_bytes": 30110639,
+  "file_count": 913,
+  "uncompressed_size_bytes": 68757900,
+  "download_url": null,
+  "note": "The download URL will be added when this archive is attached to a public release. Until then, pass a local copy with --archive."
+}

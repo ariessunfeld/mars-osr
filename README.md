@@ -111,6 +111,27 @@ No simulation output is embedded in this repository. See
 [docs/reproducibility.md](docs/reproducibility.md) for the release's
 reproducibility contract.
 
+## Manuscript figures
+
+The exact figure files used by the manuscript are archived under
+[`figures/manuscript/reference`](figures/manuscript/reference). A
+machine-readable registry maps each figure to its producer, inputs, reference
+hash, and reproduction status. The required simulation products are distributed
+as a separate release asset rather than committed to Git.
+
+```bash
+python -m pip install -e ".[figures]"
+python scripts/fetch_manuscript_figure_data.py --archive /path/to/mars-osr-manuscript-figure-data-v1.tar.gz
+python scripts/reproduce_manuscript_figures.py --list
+python scripts/reproduce_manuscript_figures.py --figure 7
+```
+
+Figures 2–8 and S1–S4 can be regenerated from the archived inputs. Figure 1 is
+a manual concept illustration. Figures 9 and 10 currently include their
+reference images and plotting layers; their canonical atmospheric-transmission
+and climate-model generation package will be added after the coauthor handoff.
+See the [figure reproduction guide](figures/manuscript/README.md) for details.
+
 ## Citation and status
 
 This is a research release. Citation metadata are provided in

@@ -31,7 +31,8 @@ dependencies = [
 [project.optional-dependencies]
 optimization = ["cyipopt"]
 examples = ["matplotlib"]
-dev = ["build", "matplotlib", "pytest"]
+figures = ["matplotlib", "netCDF4", "pandas", "Pillow", "pyvista"]
+dev = ["build", "matplotlib", "netCDF4", "pandas", "Pillow", "pytest", "pyvista"]
 
 [project.urls]
 Repository = "https://github.com/ariessunfeld/mars-osr"

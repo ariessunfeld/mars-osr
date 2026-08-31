@@ -24,6 +24,12 @@ included workflows keep that factor at unity.
 This boundary is intentional. Atmosphere and climate coupling belong to a
 separate model and are not part of this software release.
 
+The manuscript figure archive includes the exact published images and plotting
+layers for the atmosphere/climate results in Figures 9 and 10. Those plotting
+scripts consume external NetCDF products; they do not add atmospheric physics
+to the Mars OSR propagation library. The canonical model-generation package and
+inputs will be added after the coauthor handoff.
+
 ## Included physical models
 
 - Mars point-mass, zonal, and MRO120F gravity;

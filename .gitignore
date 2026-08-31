@@ -11,6 +11,7 @@ dist/
 # Downloaded scientific data and generated products
 data
 simulation_outputs
+figures/manuscript/generated/
 
 # Solver and editor by-products
 ipopt.out

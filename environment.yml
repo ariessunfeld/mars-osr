@@ -6,6 +6,10 @@ dependencies:
   - numpy
   - scipy
   - matplotlib
+  - netcdf4
+  - pandas
+  - pillow
+  - pyvista
   - spiceypy
   - cyipopt
   - pytest
