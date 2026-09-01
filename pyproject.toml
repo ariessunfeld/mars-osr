@@ -32,6 +32,7 @@ dependencies = [
 optimization = ["cyipopt"]
 examples = ["matplotlib"]
 figures = ["matplotlib", "netCDF4", "pandas", "Pillow", "pyvista"]
+test = ["Pillow", "pytest"]
 dev = ["build", "matplotlib", "netCDF4", "pandas", "Pillow", "pytest", "pyvista"]
 
 [project.urls]
